@@ -28,6 +28,7 @@
     "express-handlebars": "^6.0.6",
     "express-session": "^1.17.3",
     "inquirer": "^9.0.0",
+    "mdb-ui-kit": "^4.3.0",
     "mysql2": "^2.3.3",
     "sequelize": "^6.21.2"
   }
