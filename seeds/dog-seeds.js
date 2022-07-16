@@ -3,28 +3,51 @@ const { Dog } = require('../models');
 const dogData = [
     {
         dog_name: 'Gunner',
+        breed: 'German Shepherd',
         age: 3,
-        breed_id: 6,
+        
     },
     {
         dog_name: 'Ivy',
+        breed: 'Golden Retriever',
         age: 2,
-        breed_id: 8,
     },
     {
         dog_name: 'Thunder',
-        age: 7,
-        breed_id: 9,
+        breed: 'Husky',
+        age: 7
+        
     },
     {
         dog_name: 'Blaze',
+        breed: 'Chihuahua',
         age: 5,
-        breed_id: 9,
+    
     },
     {
         dog_name: 'Hamilton',
+        breed: 'Dobermann',//6
         age: 1,
-        breed_id: 10,
+    },
+    {
+        dog_name: 'Bongo',
+        breed: 'Dachshund', //7
+        age: 1,
+    },
+    {
+        dog_name: 'Buddy',
+        breed: 'Poddle',//8
+        age: 1,
+    },
+    {
+        dog_name: 'Franklin',
+        breed: 'Corgy',//9
+        age: 1,
+    },
+    {
+        dog_name: 'Luna',
+        breed: 'Shiba Inu',//10
+        age: 1,
     },
 ];
 
