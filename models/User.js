@@ -37,6 +37,18 @@ User.init(
                 len: [6],
             },
         },
+        location: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        Dog_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'Dog',
+                key: 'id'
+            }
+        }
     },
     {
         hooks: {

@@ -3,7 +3,7 @@ const { router } = require("express");
 const { User } = require('../../models')
 
 //CREATE new user
-router.post('/', async (req, res) => {
+router.post('/', async (req, res) => { // '/' or '/signup'????
     try{
         const dbUserData = await User.create({ //CHANGE VARIABLE???????? //User??
             username: req.body.username,

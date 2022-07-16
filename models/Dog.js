@@ -15,6 +15,10 @@ Dog.init(
             type: DataTypes.STRING,
             allowNull: false
         },
+        breed: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         age: {
             type: DataTypes.NUMBER,
             allowNull: false,
@@ -22,19 +26,36 @@ Dog.init(
                 isNumeric: true
             }
         },
-        breed_id: {
+        location: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        user_id: {
             type: DataTypes.INTEGER,
-            reference: {
-                model: 'breed',
+            allowNull: false,
+            references: {
+                model: 'User',
                 key: 'id'
             }
         }
+
+        // breed_id: {
+        //     type: DataTypes.INTEGER,
+        //     reference: {
+        //         model: 'breed',
+        //         key: 'id'
+        //     }
+        // }
     },
     {
+        //link to database
         sequelize,
+        // set to false to remove `created_at` and `updated_at` fields
         timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'dog',
     }
 );
+
+module.exports = Dog;

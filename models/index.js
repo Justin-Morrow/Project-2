@@ -1,16 +1,17 @@
 //import models
-const Breed = require('./Breed');
+// const { AggregateError } = require('sequelize/types');
 const Dog = require('./Dog')
+const User = require('./User')
 
 
-//Dog belongsTo Breed
-Dog.belongsTo(Breed, {
-    foreignKey: 'breed_id',
+// create associations
+Dog.belongsTo(User, {
+    foreignKey: 'user_id',
     onDelete: 'CASCADE'
 })
-Breed.hasMany(Dog, {
-    foreignKey: 'breed_id',
-    // onDelete: 'CASCADE'
+User.hasMany(Dog, {
+    foreignKey: 'dog_id',
+    onDelete: 'CASCADE'
 });
 
 

@@ -1,19 +1,21 @@
 //homeroutes?
 
 const router = require('express').Router();
-const { User } = require('../models');
+const { Dog, User } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', withAuth, async (req, res) => {
+//prevent non logged in users from viewing the homepage
+router.get('/', withAuth, async (req, res) => { // '/' or '/profile'
     try{
-        const userData = await User.findall({
-            attributes: { exclude: ['password'] }
+        const userData = await User.findAll({ //dogData? //find by pk
+            attributes: { exclude: ['password'] },
+            include: [{ model: Dog }],
         });
 
-        const users = userData.map((project) => project.get({ plain: true }));
+        const user = userData.map((dog) => dog.get({ plain: true }));
 
-        res.render('homepage', {
-            users,
+        res.render('homepage', { //profile?
+            user,
             logged_in: req.session.logged_in,
         });
     } catch (err) {
