@@ -1,19 +1,21 @@
-// const sequelize = require('../config/connection');
-// const seedBreeds = require('./breed-seeds');
-// const seedDogs = require('./dog-seeds')
+const seedUsers = require('./user-seeds');
+const seedDogs = require('./dog-seeds')
+
+const sequelize = require('../config/connection');
 
 
 
-// const seedAll = async () => {
-//   await sequelize.sync({ force: true });
-//   console.log('\n----- DATABASE SYNCED -----\n');
-//   await seedBreeds();
-//   console.log('\n----- BREEDS SEEDED -----\n');
+const seedAll = async () => {
+  await sequelize.sync({ force: true });
+  console.log('\n----- DATABASE SYNCED -----\n');
 
-//   await seedDogs();
-//   console.log('\n----- DOGS SEEDED -----\n');
+  await seedUsers();
+  console.log('\n----- Users SEEDED -----\n');
 
-//   process.exit(0);
-// };
+  await seedDogs();
+  console.log('\n----- DOGS SEEDED -----\n');
 
-// seedAll();
+  process.exit(0);
+};
+
+seedAll();

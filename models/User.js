@@ -17,7 +17,7 @@ User.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        username: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -49,7 +49,7 @@ User.init(
         // },
         dog_id: { // ALLOW NULL ?????????????????????
             type: DataTypes.INTEGER,
-            allowNull: false,
+            // allowNull: false,
             references: {
                 model: 'dog',
                 key: 'id'

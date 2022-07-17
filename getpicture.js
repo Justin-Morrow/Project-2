@@ -35,4 +35,4 @@ fetch('https://dog.ceo/api/breeds/list/all')
 })
 .catch(err => console.log(err))
 
-
+// module.exports = fetch; //???????

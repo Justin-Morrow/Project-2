@@ -27,15 +27,20 @@ router.get('/profile', withAuth, async (req, res) => {
 //prevent non logged in users from viewing the homepage
 router.get('/', withAuth, async (req, res) => { // '/' or '/profile'
     try{
-        const userData = await User.findAll({ //dogData? //find by pk
-            attributes: { exclude: ['password'] },
-            include: [{ model: Dog }], //????????
+        const dogData = await Dog.findAll({ //find by pk or find all?
+            // attributes: { exclude: ['password'] },
+            include: [
+                { 
+                    model: User,
+                    attributes: ['name']
+                },
+            ], 
         });
 
-        const user = userData.map((dog) => dog.get({ plain: true })); //dog???
+        const dogs = dogData.map((dog) => dog.get({ plain: true })); //dog???
 
         res.render('homepage', { //profile?
-            user,
+            dogs,
             loggedIn: req.session.loggedIn,
         });
     } catch (err) {

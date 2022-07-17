@@ -20,7 +20,7 @@ Dog.init(
             allowNull: false
         },
         age: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: false,
             validate: {
                 isNumeric: true
