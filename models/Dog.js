@@ -26,26 +26,32 @@ Dog.init(
                 isNumeric: true
             }
         },
+        // link: { //dog photo
+        //     type: DataTypes.STRING,
+
+        // },
         location: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        user_id: {
+        // match: { //finish
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        //     get() {
+        //         return this.getDataValue('user_id').split(';')
+        //     },
+        //     set(val) {
+        //         this.setDataValue('user_id', val.join(';'));
+        //     },
+        // },
+        user_id: { // ALLOW NULL?????????????????????
             type: DataTypes.INTEGER,
-            allowNull: false,
+            // allowNull: false,
             references: {
-                model: 'User',
+                model: 'user',
                 key: 'id'
             }
         }
-
-        // breed_id: {
-        //     type: DataTypes.INTEGER,
-        //     reference: {
-        //         model: 'breed',
-        //         key: 'id'
-        //     }
-        // }
     },
     {
         //link to database

@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
-const exphbs = require('express.handlebars');
+const exphbs = require('express-handlebars');
 const routes = require('./controllers')
 const helpers = require('./utils/helpers')
 
@@ -13,11 +13,11 @@ const sequelizeStore = require('connect-session-sequelize')(session.Store)
 const app = express(); //what does this do ?
 const PORT = process.env.PORT || 3001;
 
-const hbs = exphbs.create({ helpers }) //what does this do?
+const hbs = exphbs.create({ helpers }); //what does this do?
 
 //config for sessions on express server
 const sess = {
-    secret: "secret key",
+    secret: "Super secret secret",
     cookie: {},
     resave: false,
     saveUninitialized: true,

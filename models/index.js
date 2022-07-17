@@ -15,4 +15,4 @@ User.hasMany(Dog, {
 });
 
 
-module.exports = { User, Breed, Dog };
+module.exports = { User, Dog };
