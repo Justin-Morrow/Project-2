@@ -37,24 +37,34 @@ User.init(
                 len: [6],
             },
         },
-        location: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        Dog_id: {
+        // match: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        //     get() {
+        //         return this.getDataValue('dog_id').split(';')
+        //     },
+        //     set(val) {
+        //         this.setDataValue('dog_id', val.join(';'));
+        //     },
+        // },
+        dog_id: { // ALLOW NULL ?????????????????????
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'Dog',
+                model: 'dog',
                 key: 'id'
             }
         }
     },
     {
         hooks: {
-            async beforeCreate(newUserData) {
+            beforeCreate: async (newUserData) => {
                 newUserData.password = await bcrypt.hash(newUserData.password, 10);
                 return newUserData;
+            },
+            beforeUpdate: async (updatedUserData) => {
+                updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+                return updatedUserData;
             },
         },
         sequelize,
