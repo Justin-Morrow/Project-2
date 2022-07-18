@@ -3,7 +3,7 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const sequelize = require('./config/connection');
 //store user cookies in database
-const sequelizeStore = require('connect-session-sequelize')(session.Store);
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const routes = require('./controllers');
 const { createServer } = require('http'); 
 const Server = require('socket.io'); 
@@ -31,7 +31,7 @@ const sess = {
     // cookie: {},
     resave: false,
     saveUninitialized: true,
-    store: new sequelizeStore({
+    store: new SequelizeStore({
         db: sequelize
     })
 };
