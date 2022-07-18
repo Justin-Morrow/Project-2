@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chat Page</title>
+    <script src="script.js" type="module"></script>
+    <style>
+        body {
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+            max-width: 1200px;
+        }
+
+        #message-container {
+            border: 1px solid black;
+            flex-grow: 1;
+            overflow: auto;
+
+        }
+
+        #message-container div {
+            background-color: aliceblue;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="message-container"></div>
+    <form id="form">
+        <label for="message-input">Messages</label>
+        <input id="message-input" type="text">
+        <button type="submit" id="send-button">Send</button>
+        <label for="room-input">Room</label>
+        <input type="text" id="room-input">
+        <button type="button" id="room-button">Join</button>
+    </form>
+
+
+</body>
+
+</html>
