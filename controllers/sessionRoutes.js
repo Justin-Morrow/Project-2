@@ -2,10 +2,10 @@
 
 const router = require('express').Router();
 const { Dog, User } = require('../models');
-const withAuth = require('../utils/auth');
+// const withAuth = require('../utils/auth'); 
 
 //profile, first thing after login and create user
-router.get('/profile', withAuth, async (req, res) => {
+router.get('/profile', async (req, res) => { //add with auth
     try {
         const userData = await User.findByPk(req.session.user_id, {
             attributes: {exclude: ['password'] },
@@ -25,7 +25,7 @@ router.get('/profile', withAuth, async (req, res) => {
 });
 
 //prevent non logged in users from viewing the homepage
-router.get('/', withAuth, async (req, res) => { // '/' or '/profile'
+router.get('/', async (req, res) => { // '/' or '/profile' ADD WithAuth
     try{
         const dogData = await Dog.findAll({ //find by pk or find all?
             // attributes: { exclude: ['password'] },

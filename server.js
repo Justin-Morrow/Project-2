@@ -31,10 +31,11 @@ const sess = {
     // cookie: {},
     resave: false,
     saveUninitialized: true,
-    store: new sequelizeStore({
-        db: sequelize
+    store: new SequelizeStore({
+      db: sequelize
     })
-};
+  };
+  
 
 //add middleware
 app.use(session(sess));
