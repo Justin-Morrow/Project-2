@@ -17,7 +17,7 @@ User.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        username: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -47,14 +47,14 @@ User.init(
         //         this.setDataValue('dog_id', val.join(';'));
         //     },
         // },
-        dog_id: { // ALLOW NULL ?????????????????????
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'dog',
-                key: 'id'
-            }
-        }
+        // dog_id: { // ALLOW NULL ?????????????????????
+        //     type: DataTypes.INTEGER,
+        //     // allowNull: false,
+        //     references: {
+        //         model: 'dog',
+        //         key: 'id'
+        //     }
+        // }
     },
     {
         hooks: {

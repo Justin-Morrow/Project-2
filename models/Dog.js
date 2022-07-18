@@ -20,7 +20,7 @@ Dog.init(
             allowNull: false
         },
         age: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: false,
             validate: {
                 isNumeric: true
@@ -44,14 +44,14 @@ Dog.init(
         //         this.setDataValue('user_id', val.join(';'));
         //     },
         // },
-        user_id: { // ALLOW NULL?????????????????????
-            type: DataTypes.INTEGER,
-            // allowNull: false,
-            references: {
-                model: 'user',
-                key: 'id'
-            }
-        }
+        // user_id: { // ALLOW NULL?????????????????????
+        //     type: DataTypes.INTEGER,
+        //     // allowNull: false,
+        //     references: {
+        //         model: 'user',
+        //         key: 'id'
+        //     }
+        // }
     },
     {
         //link to database
