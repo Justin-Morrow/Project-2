@@ -9,7 +9,7 @@ const { createServer } = require('http');
 const Server = require('socket.io'); 
 
 const helpers = require('./utils/helpers');
-const path = require('path');
+// const path = require('path');
 
 // Setup Express App
 const app = express(); 
@@ -31,11 +31,10 @@ const sess = {
     // cookie: {},
     resave: false,
     saveUninitialized: true,
-    store: new SequelizeStore({
-      db: sequelize
+    store: new sequelizeStore({
+        db: sequelize
     })
-  };
-  
+};
 
 //add middleware
 app.use(session(sess));
