@@ -28,19 +28,19 @@ Libraries:
 
 ## Contributors
   Samira
-- *Samira's GitHub account/username*
+- https://github.com/Nourizadeh29
 
  David
-- *David's GitHub account/username*
+- https://github.com/davidpascual2
 
  Christina
-- *Christina's GitHub account/username*
+- https://github.com/c1008h
 
  Justin
-- *Justin's GitHub account/username*
+- https://github.com/Justin-Morrow
 
  Dylan
-- *Dylan's GitHub account/username*
+- https://github.com/dhuw
 
 ## User Story 
 
