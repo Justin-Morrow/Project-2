@@ -1,24 +1,34 @@
-const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
-const routes = require('./controllers')
-const helpers = require('./utils/helpers')
-
 const sequelize = require('./config/connection');
-
 //store user cookies in database
-const sequelizeStore = require('connect-session-sequelize')(session.Store)
+const sequelizeStore = require('connect-session-sequelize')(session.Store);
+const routes = require('./controllers');
+const { createServer } = require('http'); 
+const Server = require('socket.io'); 
 
-const app = express(); //what does this do ?
-const PORT = process.env.PORT || 3306;
+const helpers = require('./utils/helpers');
+const path = require('path');
 
-const hbs = exphbs.create({ helpers }); //what does this do?
+// Setup Express App
+const app = express(); 
+const socketServer = require('./controllers/socketServer');
+const httpServer = createServer(app);
+const io = new Server(httpServer);
+socketServer(io);
+
+const PORT = process.env.PORT || 3000;
+
+//require our models for syncing 
+const { Dog, User } = require('./models');
+
+
 
 //config for sessions on express server
 const sess = {
-    secret: "Super secret secret",
-    cookie: {},
+    secret: process.env.SESSION_SECRET || "Super secret secret",
+    // cookie: {},
     resave: false,
     saveUninitialized: true,
     store: new sequelizeStore({
@@ -28,16 +38,21 @@ const sess = {
 
 //add middleware
 app.use(session(sess));
+// setup the express app to handle data parsing 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
+// static directory 
+app.use(express.static('public'));
+
+const hbs = exphbs.create({});
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(routes);
 
-sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log('Now listening'))
-})
+sequelize.sync({ force: false }).then(function() {
+    httpServer.listen(PORT, function() {
+        console.log("Doggie Date App Listening on Port " + PORT);
+    });
+});
