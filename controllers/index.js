@@ -1,14 +1,19 @@
 const express = require('express');
-const router = express.Router(); 
+const router = require('express').Router(); 
 
-// front end handlebars work
-const frontEndRoutes = require('./frontEndRoutes');
-router.use("/", frontEndRoutes);
+// // front end handlebars work
+// const frontEndRoutes = require('./frontEndRoutes');
+// router.use("/", frontEndRoutes);
 
 // back end sql work 
 const apiRoutes = require('./api');
-const { restore } = require('../models/Dog');
+const sessionRoutes = require('./sessionRoutes');
+
 router.use('/api', apiRoutes);
+router.use('/', sessionRoutes)
+
+const { restore } = require('../models/Dog');
+
 
 // log sessions
 router.get("/sessions", (req,res)=>{
