@@ -51,3 +51,14 @@ signupForm.addEventListener("submit",(e)=>{
 socket.on('greeting', (greeting) => {
     console.log(greeting);
 });
+
+const loginBtn = document.getElementById('loginBtn')
+const signBtn = document.getElementById('signBtn')
+
+signBtn.addEventListener('click', () => {
+    location.href='/public/profile.html'
+})
+
+loginBtn.addEventListener('click', () => {
+    location.href='/public/profile.html'
+})
