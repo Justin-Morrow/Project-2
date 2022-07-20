@@ -3,52 +3,49 @@ const express = require('express');
 const router = express.Router();
 // connecting with socket io-server
 const io = require("../../server");
-const { User, UserMatches, Lobby } = require('../../models');
+const { User, Lobby } = require('../../models');
 const bcrypt = require("bcrypt");
-// const { beforeDestroy } = require('../../models/Dog');
-// const { route } = require('.');
-// const { default: ModelManager } = require('sequelize/types/model-manager');
-// const { Model } = require('sequelize/types');
 
 // API routes
 // Get landing page
-router.get("/", (req, res) =>{
-User.findAll().then(UserData =>{
-    res.json({UserData});
-}).catch(err =>{
-    console.log(err);
-    res.status(500).json(err);
-})
-});
+router.get("/", (req, res) => {
+    // Basic get Requests - get all
+    User.findAll().then(UserData => {
+        res.json({UserData})
+    }).catch(err => {
+        console.log(err)
+        res.status(500).json(err);
+    })
+    });
 
 // Get Logout page
-router.get("/logout", (req, res) =>{
-    req.session.destroy(()=> {
-        res.json({msg: "session is closed"});
-        res.redirect("/");
-    })
-});
+router.get("/logout", (req, res) => {
+    // User logout
+    req.session.destroy();
+    res.redirect("/login")
+})
 
 // Get by ID 
-router.get("/:id", (req, res) =>{
-    User.findByPk(req.params.id).then(UserData =>{
-        if(UserData){
+router.get("/:id", (req, res) => {
+    // Basic get Requests - get one
+    User.findByPk(req.params.id).then(UserData => {
+        if (UserData) {
             res.json({UserData})
         } else {
-            res.status(404).json({err: "No user found"})
+            res.status(404).json({err:"No such user."});
         }
     }).catch(err => {
-        console.log(err);
+        console.log(err)
         res.status(500).json({err});
     })
-});
+    });
 
 // Create a User API route
-route.post("/", (req,res)=>{
+router.post("/", (req, res) => {
     User.create({
-        email: req.body.email,
         username: req.body.username,
-        password: req.body.password
+        password: req.body.password,
+        email: req.body.email
     }).then(newUser => {
         req.session.user = {
             username: newUser.username,
@@ -58,22 +55,23 @@ route.post("/", (req,res)=>{
         res.json({newUser});
     }).catch(err => {
         console.log(err);
-        res.status(500).json({message: ""})
+        res.status(500).json({ message: "User creation failed:", err: err })
     })
-})
+    });
 
 // login form route 
-router.post("/login", (req, res) =>{
+router.post("/login", (req, res) => {
+    // Login Form Route
     User.findOne({
         where: {
             email: req.body.email
         }
-    }).then(foundUser =>{
-        if(!foundUser){
-            req.session.destroy();
-            res.status(401).json({message: "Incorrect email or password"})
+    }).then(foundUser => {
+        if (!foundUser) {
+            req.session.destroy()
+            res.status(401).json({ message: "Incorrect email or password" })
         } else {
-            if (bcrypt.compareSync(req.body.password, foundUser.password)){
+            if (bcrypt.compareSync(req.body.password, foundUser.password)) {
                 req.session.user = {
                     username: foundUser.username,
                     email: foundUser.email,
@@ -81,18 +79,18 @@ router.post("/login", (req, res) =>{
                 }
                 res.json({foundUser})
             } else {
-                req.session.destroy();
-                res.status(401).json({message: "Incorrect email or Password"})
+                req.session.destroy()
+                res.status(401).json({ message: "Incorrect email or password" })
             }
         }
     }).catch(err => {
         console.log(err);
         res.status(500).json(err);
     })
-});
+    })
 
 // Update user route 
-router.put("/:id", (req, res) =>{
+router.put("/:id", (req, res) => {
     User.update({
         username: req.body.username,
         email: req.body.email,
@@ -101,22 +99,23 @@ router.put("/:id", (req, res) =>{
         breed: req.body.breed,
         age: req.body.age,
         gender: req.body.gender,
-        location: req.body.location
+        location: req.body.location,
     }, {
         where: {
             id: req.params.id
         }
-    }).then(updatedData =>{
-        if(updatedData[0]) {
+    }).then(updatedData => {
+        if (updatedData[0]) {
             res.json({updatedData});
         } else {
-            res.status(404).json({err: "User not found"});
+            res.status(404).json({ err: "no such user found!" });
         }
-    }).catch(err => {
+        })
+        .catch(err => {
         console.log(err);
-        res.status(500).json({err});
-    });
-});
+        res.status(500).json({ err });
+        });
+    })
 
 // Add a match route         check if / if is enough or if /lobby is needed
 router.post("/", (req, res) =>{
@@ -127,7 +126,7 @@ router.post("/", (req, res) =>{
             email: req.body.email
         }
     });
-});
+})
 
 module.exports = router;
 
