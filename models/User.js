@@ -1,17 +1,17 @@
 // for Login
-const { Model, DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt'); //only user model has this for password encryption
-const sequelize = require('../config/connection');
+const { Model, DataTypes } = require("sequelize");
+const bcrypt = require("bcrypt"); //only user model has this for password encryption
+const sequelize = require("../config/connection");
 
 class User extends Model {
-    checkPassword(loginPw) {
-        return bcrypt.compareSync(loginPw, this.password);
-    }
+    // checkPassword(loginPw) {
+    //     return bcrypt.compareSync(loginPw, this.password);
+    // }
 }
 
 User.init(
     {
-        user_id: { //id????????
+        id: { //user_id????????
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
@@ -19,24 +19,59 @@ User.init(
         },
         username: {
             type: DataTypes.STRING,
-            allowNull: true, //? will this break code 
-        },
-        
+            unique: true,
+            validate: {
+                isAlphanumeric: true
+            }
+            // allowNull: true, //? will this break code 
+        }, 
         email: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
             validate: {
                 isEmail: true,
-            },
+            }
         },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [6],
-            },
+            }
         },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        breed: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        age: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            validate: {
+                isNumeric: true
+            }
+        },
+        gender: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        // link: { //dog photo
+        //     type: DataTypes.STRING,
+
+        // },
+        location: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        matches_list: {
+            type: DataTypes.TEXT,
+            allowNull: true,
+            defaultValue: "",
+        }
         // match: {
         //     type: DataTypes.STRING,
         //     allowNull: false,
@@ -55,23 +90,24 @@ User.init(
         //         key: 'id'
         //     }
         // }
-    },
-    {
+    },{
         hooks: {
-            beforeCreate: async (newUserData) => {
-                newUserData.password = await bcrypt.hash(newUserData.password, 10);
-                return newUserData;
+            beforeCreate(newUser) {
+                newUser.username = newUser.username.toLowerCase();
+                newUser.password = bcrypt.hashSync(newUser.password, 10);
+                return newUser;
             },
-            beforeUpdate: async (updatedUserData) => {
-                updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
-                return updatedUserData;
+            beforeUpdate(updatedUser) {
+                updatedUser.username = updatedUser.username.toLowerCase();
+                updatedUser.password = bcrypt.hashSync(updatedUser.password, 10);
+                return updatedUser;
             },
         },
         sequelize,
-        timestamps: false,
-        freezeTableName: true,
-        underscored: true,
-        modelName: 'user',
+        // timestamps: false,
+        // freezeTableName: true,
+        // underscored: true,
+        // modelName: 'user',
     }
 );
 
