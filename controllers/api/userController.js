@@ -118,8 +118,8 @@ router.put("/:id", (req, res) =>{
     });
 });
 
-// Add a match route
-router.post("/lobby", (req, res) =>{
+// Add a match route         check if / if is enough or if /lobby is needed
+router.post("/", (req, res) =>{
     // add a friend - takes in sesion id and puts as user 1
     // takes in input user id and puts as user 2 - email 
     User.findOne({
