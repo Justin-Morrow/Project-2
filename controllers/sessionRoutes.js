@@ -39,14 +39,14 @@ router.get('/profile', async (req, res) => { //add with auth
     try {
         const userData = await User.findByPk(req.session.user_id, {
             attributes: {exclude: ['password'] },
-            include: [{model: Dog}],
+            include: [{ model: Dog }],
         });
         
-        const user = userData.get({ plain: true });
+        // const user = userData.get({ plain: true });  //DOES NOT WORK UNLESS COMMENTED OUT, SOLVE
 
         res.render('profile', {
-            ...user,
-            loggedIn: true 
+            // user, //...user, //DOES NOT WORK UNLESS COMMENTED OUT, SOLVE
+            loggedIn: req.session.loggedIn, //loggedIn: true
         });
     } catch (err) {
         console.log(err)
@@ -62,7 +62,7 @@ router.get('/login', (req, res) => { //do not include custom middleware here to 
         return;
     }
 
-    res.render('login');
+    res.render('signup-login');
 });
 
 module.exports = router;

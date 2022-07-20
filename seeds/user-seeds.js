@@ -2,55 +2,55 @@ const { User } = require('../models');
 
 const userData = [
     {
-        name: 'freddy',
+        username: 'freddy',
         email: 'freddy@gmail.com',
         password: 'password123',
         // dog_id: 1
     },
     {
-        name: 'josue',
+        username: 'josue',
         email: 'josue@gmail.com',
         password: 'password123',
         // dog_id: 2
     },
     {
-        name: 'kuda',
+        username: 'kuda',
         email: 'kuda@gmail.com',
         password: 'password123',
         // dog_id: 3
     },
     {
-        name: 'luis',
+        username: 'luis',
         email: 'luis@gmail.com',
         password: 'password123',
         // dog_id: 4
     },
     {
-        name: 'jose',
+        username: 'jose',
         email: 'jose@gmail.com',
         password: 'password123',
         // dog_id: 5
     },
     {
-        name: 'ricardo',
+        username: 'ricardo',
         email: 'ricardo@gmail.com',
         password: 'password123',
         // dog_id: 6
     },
     {
-        name: 'daniel',
+        username: 'daniel',
         email: 'daniel@gmail.com',
         password: 'password123',
         // dog_id: 7
     },
     {
-        name: 'caleb',
+        username: 'caleb',
         email: 'caleb@gmail.com',
         password: 'password123',
         // dog_id: 8
     },
     {
-        name: 'david',
+        username: 'david',
         email: 'German Shepherd',
         password: 'password123',
         // dog_id: 9
