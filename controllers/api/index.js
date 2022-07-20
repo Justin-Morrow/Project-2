@@ -1,18 +1,24 @@
+const router = require('express').Router();
+const userRoutes = require('./userRoutes');
+const dogRoutes = require('./dogRoutes');
+
+router.use('/users', userRoutes); //????
+router.use('/dogs', dogRoutes); 
 // api controllers
-const express = require('express');
-const router = express.Router();
+// const express = require('express');
+// // const router = express.Router();
 
-const userRoutes = require("./userController");
-route.use("/users", userRoutes);
+// const userRoutes = require("./userController");
+// router.use("/users", userRoutes);
 
-const lobbyRoutes = require("./lobbyController");
-const { restore } = require('../../models/Dog');
-const { response } = require('express');
-route.use("/lobby", lobbyRoutes);
+// const lobbyRoutes = require("./lobbyController");
+// const { restore } = require('../../models/Dog');
+// const { response } = require('express');
+// route.use("/lobby", lobbyRoutes);
 
-router.get("/", (req,res)=>{
-    res.send("api...")
-})
+// router.get("/", (req,res)=>{
+//     res.send("api...")
+// })
 
 
 
