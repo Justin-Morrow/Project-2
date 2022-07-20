@@ -1,6 +1,6 @@
 const { request } = require("express");
 const express = require("express");
-const router = express.Router;
+const router = express.Router();
 const { User, UserMatch, Lobby } = require("../../models");
 
 // Basic Get Requests 

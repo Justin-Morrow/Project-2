@@ -1,6 +1,6 @@
 // Front End Routes
 const express = require('express');
-const { Model } = require('sequelize/types');
+// const { Model } = require('sequelize/types'); // ERROR subpath './types' is not defined by "exports" !!!!!!!!
 const router = express.Router(); 
 const { Dog, User } = require('../../models');
 

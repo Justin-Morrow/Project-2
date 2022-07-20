@@ -15,7 +15,7 @@ const app = express();
 const socketServer = require('./controllers/socketServer');
 const httpServer = createServer(app);
 const io = new Server(httpServer);
-socketServer(io);
+// socketServer(io); // error: socket server is not a function
 
 const PORT = process.env.PORT || 3000;
 //require our models for syncing 

@@ -6,7 +6,7 @@ const userRoutes = require("./userController");
 router.use("/users", userRoutes);
 
 const lobbyRoutes = require("./lobbyController");
-route.use("/lobby", lobbyRoutes);
+router.use("/lobby", lobbyRoutes);
 
 router.get("/", (req,res)=>{
     res.send("api...")
