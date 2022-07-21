@@ -1,6 +1,11 @@
-const socket = io.connect();
-const loginForm = document.querySelector("#login-form");
-loginForm.addEventListener("submit",(e)=>{
+//const socket = io.connect();
+const loginBtn = document.getElementById('loginBtn')
+const signBtn = document.getElementById('signBtn')
+
+
+//const loginForm = document.querySelector("#login-form");
+
+loginBtn.addEventListener("click",(e)=>{
     e.preventDefault();
     const email = document.querySelector("#email-login").value;
     const password = document.querySelector("#password-login").value;
@@ -22,8 +27,8 @@ loginForm.addEventListener("submit",(e)=>{
         }
     });
 });
-const signupForm = document.querySelector("#signup-form");
-signupForm.addEventListener("submit",(e)=>{
+//const signupForm = document.querySelector("#signup-form");
+signBtn.addEventListener("click",(e)=>{
     e.preventDefault();
     const signupObj={
         email:document.querySelector("#email-signup").value,
@@ -48,12 +53,11 @@ signupForm.addEventListener("submit",(e)=>{
         }
     });
 });
-socket.on('greeting', (greeting) => {
-    console.log(greeting);
-});
+// socket.on('greeting', (greeting) => {
+//     console.log(greeting);
+//});
 
-const loginBtn = document.getElementById('loginBtn')
-const signBtn = document.getElementById('signBtn')
+
 
 signBtn.addEventListener('click', () => {
     location.href='/public/profile.html'
