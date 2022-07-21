@@ -1,7 +1,8 @@
-// // Building Routes
-// const express = require('express');
-// const router = express.Router(); 
-// const frontEndRoutes = require('./frontEndRoutes');
-// router.use("/", frontEndRoutes);
+// Building Routes
+const express = require('express');
+const router = express.Router(); 
+const frontEndRoutes = require('./frontEndRoutes');
 
-// module.exports = router;
+router.use("/", frontEndRoutes);
+
+module.exports = router;

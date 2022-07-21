@@ -1,10 +1,5 @@
-const sequelize = require("../config/connection");
-const { User } = require("../models");
-
-const seed = async() =>{
-  try {
-    const userData = await User.bulkCreate([
-      {
+[
+    {
         "username": "Justin",
         "email": "justin@dogdate.com",
         "password": "password",
@@ -53,42 +48,5 @@ const seed = async() =>{
         "age": 5,
         "gender": "Male",
         "location": "Seattle"
-    },
-    ], {
-      individualHooks: true
-    })
-  } catch(err){
-    console.log(err);
-    throw err;
-  }
-}
-
-sequelize.sync({force: true}).then(() =>{
-  seed();
-});
-
-
-
-
-
-// const seedUsers = require('./user-seeds');
-// const seedDogs = require('./dog-seeds')
-
-// const sequelize = require('../config/connection');
-
-
-
-// const seedAll = async () => {
-//   await sequelize.sync({ force: true });
-//   console.log('\n----- DATABASE SYNCED -----\n');
-
-//   await seedUsers();
-//   console.log('\n----- Users SEEDED -----\n');
-
-//   await seedDogs();
-//   console.log('\n----- DOGS SEEDED -----\n');
-
-//   process.exit(0);
-// };
-
-// seedAll();
+    }
+]
