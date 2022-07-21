@@ -1,7 +1,9 @@
 //import models
+const User = require("./User");
+const Lobby = require("./Lobby");
 // const { AggregateError } = require('sequelize/types');
-const Dog = require('./Dog')
-const User = require('./User')
+// const Dog = require('./Dog')
+
 
 
 // create associations //UNCOMMENT only did this to check routes
@@ -15,4 +17,4 @@ const User = require('./User')
 // });
 
 
-module.exports = { User, Dog };
+module.exports = { User, Lobby };
