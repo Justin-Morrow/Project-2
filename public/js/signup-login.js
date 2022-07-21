@@ -1,10 +1,10 @@
-const socket = io.connect();
+const socket = io.connect()
 const loginForm = document.querySelector("#login-form");
 loginForm.addEventListener("submit",(e)=>{
     e.preventDefault();
     const email = document.querySelector("#email-login").value;
     const password = document.querySelector("#password-login").value;
-    //  correct route to login
+    //route to login
     fetch("/api/users/login",{
         method:"POST",
         body:JSON.stringify({
@@ -16,7 +16,7 @@ loginForm.addEventListener("submit",(e)=>{
         }
     }).then(res=>{
         if(!res.ok){
-            // show that the login was unsuccessful
+            //the login was unsuccessful
         } else {
             document.location.replace('/profile');
         }
@@ -30,7 +30,7 @@ signupForm.addEventListener("submit",(e)=>{
         password:document.querySelector("#password-signup").value,
         username:document.querySelector("#username-signup").value,
     }
-    //  correct route to signup
+    //the correct route to signup
     fetch("/api/users",{
         method:"POST",
         body:JSON.stringify(signupObj),
@@ -39,7 +39,7 @@ signupForm.addEventListener("submit",(e)=>{
         }
     }).then(res=>{
         if(!res.ok){
-            //  show that signup was unsuccessful
+            //show that signup was unsuccessful
             return alert("trumpet sound")
         } else {
             res.json().then(data=>{
