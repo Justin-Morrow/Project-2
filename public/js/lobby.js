@@ -1,5 +1,5 @@
 const createMatchCard = () => {
-    for(let i = 0; i < match.length; i++) {
+    for(let i = 0; i < matched.length; i++) {
         const cardDiv = document.createElement('div')
         const imgEl = document.createElement('img')
         const cardBody = document.createElement('div')
@@ -11,5 +11,11 @@ const createMatchCard = () => {
         const buttonDiv = document.createElement('div')
         const unmatchBtn = document.createElement('button')
         const chatBtn = document.createElemeent('button');
+    }
+}
+
+const displayMatchCards = () => {
+    while(i < 4) {
+        createMatchCard();
     }
 }
