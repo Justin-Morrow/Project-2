@@ -16,3 +16,7 @@ signUp.addEventListener('click', () => {
     console.log(event.target)
     location.href = './signup-login.html'
 })
+
+
+
+

@@ -34,6 +34,7 @@ addPetBtn.addEventListener('click', () => {
                 .catch(err => console.log(err))
 
                     location.href = '/public/match.html'
+                    // location.href = '../views/match.handlebars'
 
             } else {
                 alert('Please enter a valid breed.');
