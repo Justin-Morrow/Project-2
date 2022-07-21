@@ -30,6 +30,9 @@ router.get("/profile", (req,res)=>{
                 }
             };
             res.render("user", hbsUser); 
+            // res.render('user',hbsUser, {
+            //     loggedIn: req.session.loggedIn
+            // } )
         }
     )
 })

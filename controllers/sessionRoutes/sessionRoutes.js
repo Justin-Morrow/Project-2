@@ -1,6 +1,6 @@
 // Routes for whether or not the user is logged in 
 const express = require("express");
-const router = express.Router();
+const router = require('express').Router();
 
 router.get("/", (req, res)=>{
     res.json(req.session);
