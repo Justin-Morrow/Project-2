@@ -1,4 +1,5 @@
 const loginBtn = document.getElementById('loginbtn')
+const logbtn = document.getElementById('logbtn')
 const signupBtn = document.getElementById('signupbtn')
 const signUp = document.getElementById('signup')
 
@@ -13,6 +14,11 @@ signupBtn.addEventListener('click', () => {
 })
 
 signUp.addEventListener('click', () => {
+    console.log(event.target)
+    location.href = './signup-login.html'
+})
+
+logbtn.addEventListener('click', () => {
     console.log(event.target)
     location.href = './signup-login.html'
 })

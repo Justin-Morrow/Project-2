@@ -28,12 +28,12 @@ addPetBtn.addEventListener('click', () => {
                     console.log(x)
                     console.log(data.message[x])
                     
-                    const profilePicture = document.createElement('img')
-                    profilePicture = data.message[x]
-                })
-                .catch(err => console.log(err))
+                    // const profilePicture = document.createElement('img')
+                    // profilePicture = data.message[x]
 
                     location.href = '/public/match.html'
+                })
+                .catch(err => console.log(err))
 
             } else {
                 alert('Please enter a valid breed.');

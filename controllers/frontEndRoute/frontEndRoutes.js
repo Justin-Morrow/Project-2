@@ -51,10 +51,10 @@ router.get('/profile', async (req, res) => { //add with auth
             include: [{ model: User }], //??????
         });
         
-        // const user = userData.get({ plain: true });  // TypeError: Cannot read properties of null (reading 'get')  //DOES NOT WORK UNLESS COMMENTED OUT, SOLVE
+        const user = userData.get({ plain: true });  // TypeError: Cannot read properties of null (reading 'get')  //DOES NOT WORK UNLESS COMMENTED OUT, SOLVE
 
         res.render('profile', {
-            // ...user,  // user, //DOES NOT WORK UNLESS COMMENTED OUT, SOLVE
+            ...user,  // user, //DOES NOT WORK UNLESS COMMENTED OUT, SOLVE
             loggedIn: req.session.loggedIn, //loggedIn: true
         });
     } catch (err) {
