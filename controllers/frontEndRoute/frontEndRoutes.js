@@ -10,6 +10,10 @@ router.get("/", (req,res)=>{
     // homepage
     return res.render("home")
 })
+router.get("/signup-login", (req,res)=>{
+    // sign-up and login
+    return res.render("signup-login")
+})
 
 //============== PROFILE get request ================
 
