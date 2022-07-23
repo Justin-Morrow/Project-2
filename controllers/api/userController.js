@@ -7,6 +7,8 @@ const { User, Lobby } = require('../../models');
 const bcrypt = require("bcrypt");
 
 // API routes
+
+
 // Get landing page
 router.get("/", (req, res) => {
     // Basic get Requests - get all
@@ -18,12 +20,15 @@ router.get("/", (req, res) => {
     })
     });
 
+<<<<<<< HEAD
 // Get Logout page
 router.get("/logout", (req, res) => {
     // User logout
     req.session.destroy();
     res.redirect("/login")
 })
+=======
+>>>>>>> 98dfc56bb62f43e30b2c5e2ffeaf158375580a43
 
 // Get by ID 
 router.get("/:id", (req, res) => {
@@ -40,8 +45,14 @@ router.get("/:id", (req, res) => {
     })
     });
 
+<<<<<<< HEAD
 // Create a User API route
 router.post("/", (req, res) => {
+=======
+// CREATE USER API route
+router.post("/", (req,res)=>{
+    console.log(req.body, 'REQ.BODY!!!!!!')
+>>>>>>> 98dfc56bb62f43e30b2c5e2ffeaf158375580a43
     User.create({
         username: req.body.username,
         password: req.body.password,
@@ -88,6 +99,15 @@ router.post("/login", (req, res) => {
         res.status(500).json(err);
     })
     })
+
+// Get Logout page
+router.get("/logout", (req, res) =>{
+    req.session.destroy(()=> {
+        res.json({msg: "session is closed"});
+        res.redirect("/");
+    })
+});
+
 
 // Update user route 
 router.put("/:id", (req, res) => {

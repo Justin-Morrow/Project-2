@@ -1,10 +1,10 @@
-const socket = io.connect();
+// const socket = io.connect()
 const loginForm = document.querySelector("#login-form");
 loginForm.addEventListener("submit",(e)=>{
     e.preventDefault();
-    const email = document.querySelector("#email-login").value;
-    const password = document.querySelector("#password-login").value;
-    //  correct route to login
+    const email = document.querySelector("#email-login").value.trim();
+    const password = document.querySelector("#password-login").value.trim();
+    //route to login
     fetch("/api/users/login",{
         method:"POST",
         body:JSON.stringify({
@@ -16,21 +16,25 @@ loginForm.addEventListener("submit",(e)=>{
         }
     }).then(res=>{
         if(!res.ok){
-            // show that the login was unsuccessful
+            //the login was unsuccessful
         } else {
             document.location.replace('/profile');
         }
     });
 });
+
+
 const signupForm = document.querySelector("#signup-form");
 signupForm.addEventListener("submit",(e)=>{
     e.preventDefault();
+    
     const signupObj={
-        email:document.querySelector("#email-signup").value,
-        password:document.querySelector("#password-signup").value,
-        username:document.querySelector("#username-signup").value,
+        email:document.querySelector("#email-signup").value.trim(),
+        password:document.querySelector("#password-signup").value.trim(),
+        username:document.querySelector("#username-signup").value.trim(),
     }
-    //  correct route to signup
+    console.log(signupObj, "signup OBJ!!!!!!!!")
+    //the correct route to signup
     fetch("/api/users",{
         method:"POST",
         body:JSON.stringify(signupObj),
@@ -39,7 +43,7 @@ signupForm.addEventListener("submit",(e)=>{
         }
     }).then(res=>{
         if(!res.ok){
-            //  show that signup was unsuccessful
+            //show that signup was unsuccessful
             return alert("trumpet sound")
         } else {
             res.json().then(data=>{
@@ -48,6 +52,56 @@ signupForm.addEventListener("submit",(e)=>{
         }
     });
 });
-socket.on('greeting', (greeting) => {
-    console.log(greeting);
-});
+// socket.on('greeting', (greeting) => {
+//     console.log(greeting);
+// });
+
+
+
+// const loginBtn = document.getElementById('loginButton')
+// const signBtn = document.getElementById('signBtn')
+
+// signBtn.addEventListener('click', () => {
+//     location.href='/profile'
+// })
+
+// loginBtn.addEventListener('click', () => {
+//     location.href='/profile'
+// })
+
+
+
+
+//================DAVIDS SIGN UP FORM (IGNORE)======================//
+
+// const signupFormHandler = async (event) => {
+//     event.preventDefault();
+  
+//     const email = document.querySelector('#email-signup').value.trim();
+//     const password = document.querySelector('#password-signup').value.trim();
+//     const username = document.querySelector('#name-signup').value.trim();
+  
+//     if (email && password && username) {
+//       const response = await fetch('/api/users', {
+//         method: 'POST',
+//         body: JSON.stringify({ email, password, username }),
+//         headers: { 'Content-Type': 'application/json' },
+//       });
+  
+//       if (response.ok) {
+//         document.location.replace('/profile');
+//       } else {
+//         alert(response.statusText);
+//       }
+//     }
+//   };
+
+//   document
+//   .querySelector('.login-form')
+//   .addEventListener('submit', loginFormHandler);
+
+// document
+//   .querySelector('.signup-form')
+//   .addEventListener('submit', signupFormHandler);
+
+//=========================================================

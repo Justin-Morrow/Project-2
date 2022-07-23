@@ -1,7 +1,11 @@
 // This deals with the Lobby Table
 const express = require("express");
 const router = express.Router();
+<<<<<<< HEAD
 const { User, Lobby } = require("../../models");
+=======
+const { User, UserMatch, Lobby } = require("../../models");
+>>>>>>> 98dfc56bb62f43e30b2c5e2ffeaf158375580a43
 
 // Basic Get Requests 
 // To Get All Lobbies

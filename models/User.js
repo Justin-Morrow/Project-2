@@ -40,24 +40,24 @@ User.init(
                 len: [6],
             }
         },
-        name: {
+        fullName: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         breed: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         age: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
             validate: {
                 isNumeric: true
             }
         },
         gender: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         // link: { //dog photo
         //     type: DataTypes.STRING,
@@ -65,7 +65,7 @@ User.init(
         // },
         location: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         matches_list: {
             type: DataTypes.TEXT,
