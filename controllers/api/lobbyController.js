@@ -68,7 +68,8 @@ router.delete("/:id",(req,res)=>{
             id:req.params.id
         }
     }).then(delLobby=>{
-        if(delLobby){res.json({delLobby})}
+        if(delLobby){
+        res.json({delLobby})}
         else {res.status(404)}
     
     })

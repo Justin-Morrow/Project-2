@@ -10,7 +10,7 @@ router.get("/",(req,res)=>{
 })
 
 // Profile Page Get Request
-router.get("/profile",(req,res)=>{
+router.get("/profile",(req, res) => {
     // IF not logged in, return to login page
     if(!req.session.user){
         // return res.redirect("/")
