@@ -11,6 +11,8 @@ const bcrypt = require("bcrypt");
 // const { Model } = require('sequelize/types');
 
 // API routes
+
+
 // Get landing page
 router.get("/", (req, res) =>{
 User.findAll().then(UserData =>{
@@ -21,13 +23,6 @@ User.findAll().then(UserData =>{
 })
 });
 
-// Get Logout page
-router.get("/logout", (req, res) =>{
-    req.session.destroy(()=> {
-        res.json({msg: "session is closed"});
-        res.redirect("/");
-    })
-});
 
 // Get by ID 
 router.get("/:id", (req, res) =>{
@@ -43,8 +38,9 @@ router.get("/:id", (req, res) =>{
     })
 });
 
-// Create a User API route
+// CREATE USER API route
 router.post("/", (req,res)=>{
+    console.log(req.body, 'REQ.BODY!!!!!!')
     User.create({
         email: req.body.email,
         username: req.body.username,
@@ -90,6 +86,15 @@ router.post("/login", (req, res) =>{
         res.status(500).json(err);
     })
 });
+
+// Get Logout page
+router.get("/logout", (req, res) =>{
+    req.session.destroy(()=> {
+        res.json({msg: "session is closed"});
+        res.redirect("/");
+    })
+});
+
 
 // Update user route 
 router.put("/:id", (req, res) =>{

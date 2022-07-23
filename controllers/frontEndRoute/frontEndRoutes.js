@@ -48,10 +48,12 @@ router.get('/profile', async (req, res) => { //add with auth
     try {
         const userData = await User.findByPk(req.session.user_id, {
             attributes: {exclude: ['password'] },
+            raw: true,
             include: [{ model: User }], //??????
         });
-        
+    
         // const user = userData.get({ plain: true });  // TypeError: Cannot read properties of null (reading 'get')  //DOES NOT WORK UNLESS COMMENTED OUT, SOLVE
+        console.log(userData)
 
         res.render('profile', {
             // ...user,  // user, //DOES NOT WORK UNLESS COMMENTED OUT, SOLVE
@@ -96,6 +98,14 @@ router.get('/profile', async (req, res) => { //add with auth
 //     )
 // });
 
+router.get('/login', (req, res) => { //do not include custom middleware here to prevent user from getting into infinite loop
+    if(req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+
+    res.render('signup-login');
+});
 
 
 

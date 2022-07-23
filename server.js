@@ -34,6 +34,7 @@ const sess = {
 
 //add middleware
 app.use(session(sess));
+
 // sets up the express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

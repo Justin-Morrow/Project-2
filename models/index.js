@@ -7,14 +7,16 @@ const Lobby = require("./Lobby");
 
 
 // create associations //UNCOMMENT only did this to check routes
-Lobby.belongsTo(User, {
+User.hasMany(Lobby, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE'
-})
-User.hasMany(Lobby, {
-    foreignKey: 'dog_id',
-    onDelete: 'CASCADE'
 });
+
+Lobby.belongsTo(User, {
+    foreignKey: 'user_id',
+    // onDelete: 'CASCADE'
+})
+
 
 
 module.exports = { User, Lobby };

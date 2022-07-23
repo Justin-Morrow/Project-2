@@ -13,7 +13,7 @@ Lobby.init({
     host_id: {
         type: DataTypes.INTEGER,
         references: {
-            model: "Users", //david changed
+            model: "users", //david changed
             key: "id"    
         },
     },
