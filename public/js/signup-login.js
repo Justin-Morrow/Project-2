@@ -65,7 +65,6 @@ signBtn.addEventListener("click",(e)=>{
             } else {
                 res.json().then(data=>{
                     location.href='./profile'
-                    //document.location.replace(`/profile`);
                 })
             }
         });

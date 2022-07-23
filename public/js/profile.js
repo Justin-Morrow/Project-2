@@ -1,4 +1,4 @@
-//const fetch = require('node-fetch');
+const fetch = require('node-fetch');
 
 const addPetBtn = document.getElementById('add-btn')
 const nameIn = document.getElementById('name')
@@ -31,7 +31,7 @@ addPetBtn.addEventListener('click', () => {
                     // const profilePicture = document.createElement('img')
                     // profilePicture = data.message[x]
 
-                    location.href = '/public/match.html'
+                    location.href = './match'
                 })
                 .catch(err => console.log(err))
 
