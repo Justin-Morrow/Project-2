@@ -28,11 +28,14 @@ const signupForm = document.querySelector("#signup-form");
 signupForm.addEventListener("submit",(e)=>{
     e.preventDefault();
     
+    
     const signupObj={
+
         email:document.querySelector("#email-signup").value.trim(),
         password:document.querySelector("#password-signup").value.trim(),
         username:document.querySelector("#username-signup").value.trim(),
     }
+    
     console.log(signupObj, "signup OBJ!!!!!!!!")
     //the correct route to signup
     fetch("/api/users",{
@@ -72,36 +75,3 @@ signupForm.addEventListener("submit",(e)=>{
 
 
 
-//================DAVIDS SIGN UP FORM (IGNORE)======================//
-
-// const signupFormHandler = async (event) => {
-//     event.preventDefault();
-  
-//     const email = document.querySelector('#email-signup').value.trim();
-//     const password = document.querySelector('#password-signup').value.trim();
-//     const username = document.querySelector('#name-signup').value.trim();
-  
-//     if (email && password && username) {
-//       const response = await fetch('/api/users', {
-//         method: 'POST',
-//         body: JSON.stringify({ email, password, username }),
-//         headers: { 'Content-Type': 'application/json' },
-//       });
-  
-//       if (response.ok) {
-//         document.location.replace('/profile');
-//       } else {
-//         alert(response.statusText);
-//       }
-//     }
-//   };
-
-//   document
-//   .querySelector('.login-form')
-//   .addEventListener('submit', loginFormHandler);
-
-// document
-//   .querySelector('.signup-form')
-//   .addEventListener('submit', signupFormHandler);
-
-//=========================================================
