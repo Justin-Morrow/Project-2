@@ -1,8 +1,7 @@
-//yooooooooooo
-// Front End Routes
-const express = require('express');
+
+// const express = require('express');
 // const { Model } = require('sequelize/types'); // ERROR subpath './types' is not defined by "exports" !!!!!!!!
-const router = express.Router(); 
+const router = require('express').Router(); 
 const { User } = require('../../models');
 
 //============== Home Page get request ================
@@ -59,7 +58,7 @@ router.get('/profile', async (req, res) => { //add with auth
         
         console.log(userData)
         
-        // const user = userData.get({ plain: true });  // TypeError: Cannot read properties of null (reading 'get')  //DOES NOT WORK UNLESS COMMENTED OUT, SOLVE
+        const user = userData.get({ plain: true });  // TypeError: Cannot read properties of null (reading 'get')  //DOES NOT WORK UNLESS COMMENTED OUT, SOLVE
 
         res.render('profile', {
             ...user,  // user, //DOES NOT WORK UNLESS COMMENTED OUT, SOLVE
