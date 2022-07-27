@@ -8,9 +8,9 @@ router.use("/users", userRoutes);
 const lobbyRoutes = require("./lobbyController");
 router.use("/lobby", lobbyRoutes);
 
-router.get("/", (req,res)=>{
-    res.send("api...")
-})
+// router.get("/", (req,res)=>{
+//     res.send("api...")
+// })
 
 // exporting router
 module.exports = router;

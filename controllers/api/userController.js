@@ -40,7 +40,7 @@ router.get("/:id", (req, res) =>{
 
 // CREATE USER API route
 router.post("/", (req,res)=>{
-    console.log(req.body, 'REQ.BODY!!!!!!')
+    console.log(req.body, 'sign up user controller !!!!!!')
     User.create({
         email: req.body.email,
         username: req.body.username,
@@ -57,35 +57,84 @@ router.post("/", (req,res)=>{
         res.status(500).json({message: ""})
     })
 })
+//===============================================//
 
 // login form route 
-router.post("/login", (req, res) =>{
-    User.findOne({
-        where: {
-            email: req.body.email
-        }
-    }).then(foundUser =>{
-        if(!foundUser){
-            req.session.destroy();
-            res.status(401).json({message: "Incorrect email or password"})
-        } else {
-            if (bcrypt.compareSync(req.body.password, foundUser.password)){
-                req.session.user = {
-                    username: foundUser.username,
-                    email: foundUser.email,
-                    id: foundUser.id
-                }
-                res.json({foundUser})
-            } else {
-                req.session.destroy();
-                res.status(401).json({message: "Incorrect email or Password"})
-            }
-        }
-    }).catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    })
-});
+// router.post("/login", (req, res) =>{
+//     console.log(req, "LOGIN USER CONTROLLER")
+//     User.findOne({
+//         where: {
+//             email: req.body.email
+//         }
+//     }).then(foundUser =>{
+//         console.log('FOUND USER',foundUser)
+//         if(!foundUser){
+//             req.session.destroy();
+//             res.status(401).json({message: "Incorrect email or password"})
+//         } else {
+//             console.log("found user TRUE")
+//             if (bcrypt.compareSync(req.body.password, foundUser.password)){
+
+//                 req.session.save(() => {
+//                     req.session.user = {
+                    
+//                         username: foundUser.username,
+//                         email: foundUser.email,
+//                         id: foundUser.id
+//                     }
+                    
+//                   });
+                
+//                 res.json({foundUser})
+//             } else {
+//                 req.session.destroy();
+//                 res.status(401).json({message: "Incorrect email or Password"})
+//             }
+//         }
+//     }).catch(err => {
+//         console.log(err);
+//         res.status(500).json(err);
+//     })
+// });
+
+router.post('/login', async (req, res) => {
+    try {
+      // Find the user who matches the posted e-mail address
+      const userData = await User.findOne({ where: { email: req.body.email } });
+  
+      if (!userData) {
+        res
+          .status(400)
+          .json({ message: 'Incorrect email or password, please try again' });
+        return;
+      }
+  
+      // Verify the posted password with the password store in the database
+      const validPassword = await userData.checkPassword(req.body.password);
+  
+      if (!validPassword) {
+        res
+          .status(400)
+          .json({ message: 'Incorrect email or password, please try again' });
+        return;
+      }
+  
+      // Create session variables based on the logged in user
+      req.session.save(() => {
+        req.session.user_id = userData.id;
+        req.session.loggedIn = true;
+        
+        res.json({ user: userData, message: 'You are now logged in!' });
+      });
+  
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  });
+  
+
+
+//=================================================//
 
 // Get Logout page
 router.get("/logout", (req, res) =>{

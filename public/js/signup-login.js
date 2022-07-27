@@ -33,9 +33,11 @@ loginBtn.addEventListener("click",(e)=>{
                 "Content-Type":"application/json"
             }
         }).then(res=>{
+            console.log(res, 'RES !!!!!!')
             if(!res.ok){
+
                 // show that the login was unsuccessful
-                // alert(response.statusText);
+                alert(res.statusText);
             } else {
                 document.location.replace('/profile');
                 // location.href='./profile'
