@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch');
 
 const addPetBtn = document.getElementById('add-btn')
 const nameIn = document.getElementById('name')
@@ -35,7 +35,7 @@ addPetBtn.addEventListener('click', () => {
                 })
                 .catch(err => console.log(err))
 
-                    location.href = '/public/match.html'
+                    // location.href = '/public/match'
                     // location.href = '../views/match.handlebars'
 
             } else {

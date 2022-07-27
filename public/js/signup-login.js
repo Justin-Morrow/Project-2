@@ -1,3 +1,5 @@
+// const { response } = require("express")
+
 //const socket = io.connect();
 const loginBtn = document.getElementById('loginBtn')
 const signBtn = document.getElementById('signBtn')
@@ -33,7 +35,7 @@ loginBtn.addEventListener("click",(e)=>{
         }).then(res=>{
             if(!res.ok){
                 // show that the login was unsuccessful
-                alert(response.statusText);
+                // alert(response.statusText);
             } else {
                 document.location.replace('/profile');
                 // location.href='./profile'
@@ -66,21 +68,22 @@ signBtn.addEventListener("click",(e)=>{
                 "Content-Type":"application/json"
             }
         }).then(res=>{
+            console.log(res, 'RESPONSEEEEEEE!!!!!')
             if(!res.ok){
                 //  show that signup was unsuccessful
                 return alert("trumpet sound")
             } else {
-                res.json().then(data=>{
+                // res.json().then(data=>{
                     // location.href='./profile'
                     document.location.replace(`/profile`);
-                })
+                // })
             }
         });
     } else {
         alert('Please enter valid email/password')
     }
 });
-//==================//
+//=============================================//
 
 // socket.on('greeting', (greeting) => {
 //     console.log(greeting);
@@ -99,10 +102,10 @@ signBtn.addEventListener("click",(e)=>{
 //     location.href='/profile'
 // })
 
-//===============================================//
+//====================DAVIDS===========================//
 
 // const loginForm = document.querySelector("#login-form");
-// loginForm.addEventListener("submit",(e)=>{
+// loginBtn.addEventListener("submit",(e)=>{
 //     e.preventDefault();
 //     const email = document.querySelector("#email-login").value.trim();
 //     const password = document.querySelector("#password-login").value.trim();
@@ -125,6 +128,13 @@ signBtn.addEventListener("click",(e)=>{
 //     });
 // });
 
+// document
+//   .querySelector('.login-form')
+//   .addEventListener('submit', loginFormHandler);
+
+// document
+//   .querySelector('.signup-form')
+//   .addEventListener('submit', signupFormHandler);
 
 // const signupForm = document.querySelector("#signup-form");
 // signupForm.addEventListener("submit",(e)=>{

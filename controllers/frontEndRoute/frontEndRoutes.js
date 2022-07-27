@@ -9,10 +9,23 @@ router.get("/", (req,res)=>{
     // homepage
     return res.render("home")
 })
+
+//============== LOGIN PAGE get request ================
 router.get("/signup-login", (req,res)=>{
     // sign-up and login
     return res.render("signup-login")
 })
+
+// router.get('/signup-login', (req, res) => {
+//     // If the user is already logged in, redirect the request to another route
+//     if (req.session.loggedIn) {
+//       res.redirect('/');
+//       return;
+//     }
+  
+//     res.render('/login');
+//   });
+
 
 //============== PROFILE get request ================
 
@@ -45,21 +58,22 @@ router.get("/signup-login", (req,res)=>{
 
 
 
-
-
 router.get('/profile', async (req, res) => { //add with auth
+    console.log(req.session, "REQ!!!!!!!!!!!-----")
+    
     try {
-        const userData = await User.findByPk(req.session.user_id, {
+        const userData = await User.findByPk(req.session.user.id, {
             attributes: {exclude: ['password'] },
-            raw: true,
-            include: [{ model: User }], //??????
-        });
+            // raw: true,
+            // include: [{ model: User }], //??????
+        }
+        );
     
         
-        console.log(userData)
+        console.log(userData, "USER DATA@@@@@@@")
         
-        const user = userData.get({ plain: true });  // TypeError: Cannot read properties of null (reading 'get')  //DOES NOT WORK UNLESS COMMENTED OUT, SOLVE
-
+        const user =  await userData.get({ plain: true });  // TypeError: Cannot read properties of null (reading 'get')  //DOES NOT WORK UNLESS COMMENTED OUT, SOLVE
+        console.log(user, 'USERRRRR$$$$$$$$$$$')
         res.render('profile', {
             ...user,  // user, //DOES NOT WORK UNLESS COMMENTED OUT, SOLVE
             loggedIn: req.session.loggedIn, //loggedIn: true
@@ -103,14 +117,6 @@ router.get('/profile', async (req, res) => { //add with auth
 //     )
 // });
 
-router.get('/login', (req, res) => { //do not include custom middleware here to prevent user from getting into infinite loop
-    if(req.session.loggedIn) {
-        res.redirect('/');
-        return;
-    }
-
-    res.render('signup-login');
-});
 
 
 
