@@ -4,14 +4,14 @@ const bcrypt = require("bcrypt"); //only user model has this for password encryp
 const sequelize = require("../config/connection");
 
 class User extends Model {
-    // checkPassword(loginPw) {
-    //     return bcrypt.compareSync(loginPw, this.password);
-    // }
+    checkPassword(loginPw) {
+        return bcrypt.compareSync(loginPw, this.password);
+    }
 }
 
 User.init(
     {
-        id: { //user_id????????
+        id: { 
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
@@ -20,10 +20,10 @@ User.init(
         username: {
             type: DataTypes.STRING,
             unique: true,
-            validate: {
-                isAlphanumeric: true
-            }
-            // allowNull: true, //? will this break code 
+            // validate: {
+            //     isAlphanumeric: true
+            // }
+            allowNull: true, //? will this break code 
         }, 
         email: {
             type: DataTypes.STRING,
@@ -42,22 +42,22 @@ User.init(
         },
         name: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true // testing with true
         },
         breed: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true // testing with true
         },
         age: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true, // testing with true
             validate: {
                 isNumeric: true
             }
         },
         gender: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false // testing with true
         },
         // link: { //dog photo
         //     type: DataTypes.STRING,
@@ -65,7 +65,7 @@ User.init(
         // },
         location: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true // testing with true
         },
         matches_list: {
             type: DataTypes.TEXT,
@@ -104,10 +104,10 @@ User.init(
             },
         },
         sequelize,
-        // timestamps: false,
-        // freezeTableName: true,
-        // underscored: true,
-        // modelName: 'user',
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'user',
     }
 );
 

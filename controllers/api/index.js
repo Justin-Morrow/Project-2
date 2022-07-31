@@ -1,18 +1,12 @@
-//api controllers
-const express = require('express');
-const router = express.Router();
-
+const router = require('express').Router();
 const userRoutes = require("./userController");
-router.use("/users", userRoutes);
-
 const lobbyRoutes = require("./lobbyController");
+// const dogRoutes = require('/dogRoutes');
+
+router.use("/users", userRoutes);
 router.use("/lobby", lobbyRoutes);
+// router.use('/dogs', dogRoutes);
 
-router.get("/", (req,res)=>{
-    res.send("api...")
-})
-
-// exporting router
 module.exports = router;
 
 // I don't think the code below is needed -JM

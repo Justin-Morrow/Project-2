@@ -1,20 +1,19 @@
-const express = require('express');
+// const express = require('express');
 const router = require('express').Router(); 
 
-// // front end handlebars work
-const frontEndRoutes = require('./frontEndRoute');
-router.use("/", frontEndRoutes);
-
-// back end sql work 
 const apiRoutes = require('./api');
+const homeRoutes = require('./homeRoutes');
+
+router.use('/', homeRoutes)
 router.use('/api', apiRoutes);
 
-// log sessions
-router.get("/sessions", (req,res)=>{
-    res.json(req.session)
-})
 
 module.exports = router;
+
+// log sessions
+// router.get("/sessions", (req,res)=>{
+//     res.json(req.session)
+// })
 
 // I commented out because it is not needed :)
 // router.use((req,res) => {

@@ -44,5 +44,5 @@ addPetBtn.addEventListener('click', () => {
     } else {
         alert('Please fill out sign up form.')
     }
-})
+});
 

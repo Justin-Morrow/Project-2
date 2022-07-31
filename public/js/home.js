@@ -1,18 +1,18 @@
-const loginBtn = document.getElementById('loginbtn')
-const signupBtn = document.getElementById('signupbtn')
-const signUp = document.getElementById('signup')
+const loginBtn = document.getElementById('loginBtn')
+const signupBtn = document.getElementById('signupBtn')
+const loginBtn2 = document.getElementById('loginBtn2')
+
 
 loginBtn.addEventListener('click', () => {
-    console.log(event.target)
-    location.href = './signup-login.html'
+    console.log(loginBtn)
+    location.href = './signup-login'
 })
 
 signupBtn.addEventListener('click', () => {
-    console.log(event.target)
-    location.href = './signup-login.html'
+    console.log(signupBtn)
+    location.href = './signup-login'
 })
 
-signUp.addEventListener('click', () => {
-    console.log(event.target)
-    location.href = './signup-login.html'
+loginBtn2.addEventListener('click', () => {
+    location.href = './signup-login'
 })
