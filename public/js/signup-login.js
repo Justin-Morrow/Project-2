@@ -69,7 +69,7 @@ signupButton.addEventListener('click', signupFormHandler);
 //   .querySelector('#signup-form')
 //   .addEventListener('click', signupFormHandler);
 
-//===================================//
+//================OLD STUFF======================//
 // const loginForm = document.querySelector("#login-form");
 // loginForm.addEventListener("submit",(e)=>{
 //     e.preventDefault();

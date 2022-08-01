@@ -40,7 +40,7 @@ router.get('/profile', async (req, res) => { //add with auth
     }
 });
 
-//============== LOBBY get request ================
+//============== OLD LOBBY get request ================
 
 // lobby page get request
 // router.get("/lobby", (req,res)=>{

@@ -7,40 +7,6 @@ const { User } = require('../../models');
 // const { Model } = require('sequelize/types');
 // const io = require("../../server");
 
-// API routes
-// Get landing page
-
-// router.get("/", (req, res) =>{
-// User.findAll().then(UserData =>{
-//     res.json({UserData});
-// }).catch(err =>{
-//     console.log(err);
-//     res.status(500).json(err);
-// })
-// });
-
-// Get Logout page
-// router.get("/logout", (req, res) =>{
-//     req.session.destroy(()=> {
-//         res.json({msg: "session is closed"});
-//         res.redirect("/");
-//     })
-// });
-
-// Get by ID 
-// router.get("/:id", (req, res) =>{
-//     User.findByPk(req.params.id).then(UserData =>{
-//         if(UserData){
-//             res.json({UserData})
-//         } else {
-//             res.status(404).json({err: "No user found"})
-//         }
-//     }).catch(err => {
-//         console.log(err);
-//         res.status(500).json({err});
-//     })
-// });
-
 // CREATE new user
 router.post('/', async (req, res) => {
     try {
@@ -59,6 +25,7 @@ router.post('/', async (req, res) => {
             res.status(200).json(userData) //newUser
         });
     } catch (err) {
+        console.log(err)
         res.status(400).json(err)
     }
 });
@@ -205,5 +172,40 @@ router.post('/logout', (req, res) => {
 });
 
 module.exports = router;
+
+// ================OLD CODE=================//
+//Get landing page
+
+// router.get("/", (req, res) =>{
+// User.findAll().then(UserData =>{
+//     res.json({UserData});
+// }).catch(err =>{
+//     console.log(err);
+//     res.status(500).json(err);
+// })
+// });
+
+// Get Logout page
+// router.get("/logout", (req, res) =>{
+//     req.session.destroy(()=> {
+//         res.json({msg: "session is closed"});
+//         res.redirect("/");
+//     })
+// });
+
+// Get by ID 
+// router.get("/:id", (req, res) =>{
+//     User.findByPk(req.params.id).then(UserData =>{
+//         if(UserData){
+//             res.json({UserData})
+//         } else {
+//             res.status(404).json({err: "No user found"})
+//         }
+//     }).catch(err => {
+//         console.log(err);
+//         res.status(500).json({err});
+//     })
+// });
+
 
 
