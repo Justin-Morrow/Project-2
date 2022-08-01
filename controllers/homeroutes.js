@@ -11,8 +11,12 @@ router.get("/", (req,res)=>{
 
 //===============LOGIN PAGE================//
 router.get("/signup-login", (req,res)=>{
+    if(req.session.loggedIn) {
+        res.redirect('/profile');
+        return;
+    }
     // sign-up and login
-    return res.render("signup-login")
+    res.render("signup-login")
 })
 //============== PROFILE get request ================
 

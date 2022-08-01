@@ -1,18 +1,20 @@
 // const socket = io.connect();
-console.log('loginButton')
 const loginButton = document.querySelector('#loginButton')
 const signupButton = document.querySelector('#signupButton')
+
 console.log(signupButton)
+
 const loginFormHandler = async (event) => {
     event.preventDefault();
-console.log(signupButton)
-    const email = document.querySelector('#email-login').value.trim();
+console.log(loginButton)
+    // const email = document.querySelector('#email-login').value.trim();
+    const username = document.querySelector('#username-login').value.trim();
     const password = document.querySelector('#password-login').value.trim();
 
-    if (email && password) {
-        const response = await fetch('api/users/login', {
+    if (username && password) { //email
+        const response = await fetch('api/users/login', { //references api > index > userRoutes
             method: 'POST',
-            body: JSON.stringify({ email, password}),
+            body: JSON.stringify({ username, password}), //email
             headers: {'Content-Type': 'application/json'}
         });
 
@@ -22,26 +24,29 @@ console.log(signupButton)
             alert(response.statusText);
         }
     } else {
-      alert('Please enter valid email/password')
+      alert('Please enter valid username/password')
     }
 };
 
 
 const signupFormHandler = async (event) => {
     event.preventDefault();
-    console.log('HELLOOOOOOO')
-    const email = document.querySelector('#email-signup').value.trim();
+    
+    // const email = document.querySelector('#email-signup').value.trim();
     const username = document.querySelector('#username-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
 
-    if(email && username && password) {
+    if(username && password) {
+      console.log(username, 'INSIDE IF')
         const response = await fetch('/api/users', {
           method: 'POST',
-          body: JSON.stringify({ email, username, password}),
+          body: JSON.stringify({ username, password }),
           headers: { 'Content-Type': 'application/json' },
         });
+        console.log(response)
     
         if (response.ok) {
+          console.log(response, 'RESPONSE!!!!!')
           document.location.replace('/profile');
         } else {
           alert(response.statusText)
@@ -57,11 +62,11 @@ loginButton.addEventListener('click', loginFormHandler);
 signupButton.addEventListener('click', signupFormHandler);
 
 // document
-//   .querySelector('#loginButton')
+//   .querySelector('#login-form')
 //   .addEventListener('click', loginFormHandler);
 
 // document
-//   .querySelector('#signupButton')
+//   .querySelector('#signup-form')
 //   .addEventListener('click', signupFormHandler);
 
 //===================================//

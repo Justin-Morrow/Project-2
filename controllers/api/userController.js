@@ -44,13 +44,16 @@ const { User } = require('../../models');
 // CREATE new user
 router.post('/', async (req, res) => {
     try {
+        console.log(req.body.username, 'REQ USERNAME')
         const userData = await User.create({ //newUser?
-            email: req.body.email,
+            // email: req.body.email,
             username: req.body.username,
             password: req.body.password,
         });
 
         req.session.save(() => {
+            req.session.user_id = userData.id;
+            // req.session.username = userData.username;
             req.session.loggedIn = true;
 
             res.status(200).json(userData) //newUser
@@ -84,17 +87,17 @@ router.post('/', async (req, res) => {
 
 // ================LOGIN================//
 
-router.post('/login', async (req, res) => {
+router.post('/login', async (req, res) => { //signup-login OR login?
     console.log('HEY !')
     try{
         console.log(userData)
-        const userData = await User.findOne({ where: { email: req.body.email } });
+        const userData = await User.findOne({ where: { username: req.body.username } });
 
         if (!userData) {
             console.log(userData)
             res
                 .status(400)
-                .json({ message: "Incorrect email or password, please try again" });
+                .json({ message: "Incorrect username or password, please try again" });
             return;
         }
 
@@ -152,42 +155,42 @@ router.post('/login', async (req, res) => {
 
 //=======================================//
 // Update user route 
-router.put("/:id", (req, res) =>{
-    User.update({
-        username: req.body.username,
-        email: req.body.email,
-        name: req.body.name,
-        description: req.body.description,
-        breed: req.body.breed,
-        age: req.body.age,
-        gender: req.body.gender,
-        location: req.body.location
-    }, {
-        where: {
-            id: req.params.id
-        }
-    }).then(updatedData =>{
-        if(updatedData[0]) {
-            res.json({updatedData});
-        } else {
-            res.status(404).json({err: "User not found"});
-        }
-    }).catch(err => {
-        console.log(err);
-        res.status(500).json({err});
-    });
-});
+// router.put("/:id", (req, res) =>{
+//     User.update({
+//         username: req.body.username,
+//         email: req.body.email,
+//         name: req.body.name,
+//         description: req.body.description,
+//         breed: req.body.breed,
+//         age: req.body.age,
+//         gender: req.body.gender,
+//         location: req.body.location
+//     }, {
+//         where: {
+//             id: req.params.id
+//         }
+//     }).then(updatedData =>{
+//         if(updatedData[0]) {
+//             res.json({updatedData});
+//         } else {
+//             res.status(404).json({err: "User not found"});
+//         }
+//     }).catch(err => {
+//         console.log(err);
+//         res.status(500).json({err});
+//     });
+// });
 
 // Add a match route  check if / if is enough or if /lobby is needed
-router.post("/", (req, res) =>{
-    // add a friend - takes in sesion id and puts as user 1
-    // takes in input user id and puts as user 2 - email 
-    User.findOne({
-        where: {
-            email: req.body.email
-        }
-    });
-});
+// router.post("/", (req, res) =>{
+//     // add a friend - takes in sesion id and puts as user 1
+//     // takes in input user id and puts as user 2 - email 
+//     User.findOne({
+//         where: {
+//             email: req.body.email
+//         }
+//     });
+// });
 
 //=============LOGOUT===========//
 

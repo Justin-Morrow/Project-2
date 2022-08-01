@@ -20,19 +20,16 @@ User.init(
         username: {
             type: DataTypes.STRING,
             unique: true,
-            // validate: {
-            //     isAlphanumeric: true
-            // }
-            allowNull: true, //? will this break code 
+            allowNull: false, //? will this break code 
         }, 
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
-            validate: {
-                isEmail: true,
-            }
-        },
+        // email: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        //     unique: true,
+        //     validate: {
+        //         isEmail: true,
+        //     }
+        // },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -92,10 +89,10 @@ User.init(
         // }
     },{
         hooks: {
-            beforeCreate(newUser) {
-                newUser.username = newUser.username.toLowerCase();
-                newUser.password = bcrypt.hashSync(newUser.password, 10);
-                return newUser;
+            beforeCreate(userData) {
+                userData.username = userData.username.toLowerCase();
+                userData.password = bcrypt.hashSync(userData.password, 10);
+                return userData;
             },
             beforeUpdate(updatedUser) {
                 updatedUser.username = updatedUser.username.toLowerCase();
