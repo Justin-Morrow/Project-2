@@ -6,15 +6,15 @@ console.log(signupButton)
 
 const loginFormHandler = async (event) => {
     event.preventDefault();
-console.log(loginButton)
+console.log('LOGIN!!!!')
     // const email = document.querySelector('#email-login').value.trim();
     const username = document.querySelector('#username-login').value.trim();
     const password = document.querySelector('#password-login').value.trim();
 
     if (username && password) { //email
-        const response = await fetch('api/users/login', { //references api > index > userRoutes
+        const response = await fetch('/api/users/login', { //references api > index > userRoutes
             method: 'POST',
-            body: JSON.stringify({ username, password}), //email
+            body: JSON.stringify({ username: username, password: password }), //email
             headers: {'Content-Type': 'application/json'}
         });
 
@@ -31,7 +31,7 @@ console.log(loginButton)
 
 const signupFormHandler = async (event) => {
     event.preventDefault();
-    
+    console.log('SIGNUP!')
     // const email = document.querySelector('#email-signup').value.trim();
     const username = document.querySelector('#username-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();

@@ -21,7 +21,18 @@
     <title>DoggieDate</title>
 </head>
 <body>
-    {{{body}}}
+    <header>
+        {{#if loggedIn}}
+        <a id="logout" class="link">Logouttt</a>
+        {{/if}}
+    </header>
+    <main>
+        {{{body}}}
+    </main>
+
+    {{#if loggedIn}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
 </body>
 </html>
 

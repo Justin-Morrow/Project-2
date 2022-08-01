@@ -25,7 +25,7 @@ router.get('/profile', async (req, res) => { //add with auth
     try {
         const userData = await User.findByPk(req.session.user_id, {
             attributes: {exclude: ['password'] },
-            // include: [{ model: User }], //??????
+            include: [{ model: User }], //??????
         });
         
         const user = userData.get({ plain: true });  // TypeError: Cannot read properties of null (reading 'get')  //DOES NOT WORK UNLESS COMMENTED OUT, SOLVE
