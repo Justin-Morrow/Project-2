@@ -54,7 +54,7 @@ User.init(
         },
         gender: {
             type: DataTypes.STRING,
-            allowNull: false // testing with true
+            allowNull: true // testing with true
         },
         // link: { //dog photo
         //     type: DataTypes.STRING,
