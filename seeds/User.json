@@ -1,0 +1,52 @@
+[
+    {
+        "username": "Justin",
+        "email": "justin@dogdate.com",
+        "password": "password",
+        "name": "Maluma",
+        "breed": "Maltipoo",
+        "age": 1,
+        "gender": "Male",
+        "location": "Seattle"
+    },
+    {
+        "username": "David",
+        "email": "David@dogdate.com",
+        "password": "password",
+        "name": "Shark",
+        "breed": "Poodle",
+        "age": 2,
+        "gender": "Female",
+        "location": "Seattle"
+    },
+    {
+        "username": "Samira",
+        "email": "Samira@dogdate.com",
+        "password": "password",
+        "name": "Claudia",
+        "breed": "Chihuahua",
+        "age": 3,
+        "gender": "Female",
+        "location": "Seattle"
+    },
+    {
+        "username": "Dylan",
+        "email": "Dylan@dogdate.com",
+        "password": "password",
+        "name": "Sofie",
+        "breed": "Labrador",
+        "age": 3,
+        "gender": "Female",
+        "location": "Seattle"
+    },
+    {
+        "username": "Christina",
+        "email": "Christina@dogdate.com",
+        "password": "password",
+        "name": "Bandit",
+        "breed": "Labrador",
+        "age": 5,
+        "gender": "Male",
+        "location": "Seattle"
+    }
+]
