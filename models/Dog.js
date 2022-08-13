@@ -5,7 +5,7 @@ class Dog extends Model {}
 
 Dog.init(
     {
-        dog_id: {
+        id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
@@ -14,6 +14,10 @@ Dog.init(
         dog_name: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        description: {
+            type: DataTypes.STRING(500),
+            allowNull: false,
         },
         breed: {
             type: DataTypes.STRING,
@@ -25,6 +29,10 @@ Dog.init(
             validate: {
                 isNumeric: true
             }
+        },
+        gender: {
+            type: DataTypes.STRING,
+            allowNull: false,
         },
         // link: { //dog photo
         //     type: DataTypes.STRING,

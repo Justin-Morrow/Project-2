@@ -23,7 +23,11 @@
 <body>
     <header>
         {{#if loggedIn}}
-        <a id="logout" class="link">Logouttt</a>
+        <a href="/profile">Profile</a>
+        {{!-- <a id="logout" class="link">Logouttt</a> --}}
+        <button  class='link' type="button" id="logout">Logout</button>
+        {{else}}
+        <a class="link" href="/signup-login">Login</a>
         {{/if}}
     </header>
     <main>

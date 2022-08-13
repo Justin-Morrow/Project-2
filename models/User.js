@@ -37,38 +37,39 @@ User.init(
                 len: [6],
             }
         },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: true // testing with true
-        },
-        breed: {
-            type: DataTypes.STRING,
-            allowNull: true // testing with true
-        },
-        age: {
-            type: DataTypes.INTEGER,
-            allowNull: true, // testing with true
-            validate: {
-                isNumeric: true
-            }
-        },
-        gender: {
-            type: DataTypes.STRING,
-            allowNull: true // testing with true
-        },
-        // link: { //dog photo
+        // name: {
         //     type: DataTypes.STRING,
-
+        //     allowNull: true // testing with true
         // },
-        location: {
-            type: DataTypes.STRING,
-            allowNull: true // testing with true
-        },
-        matches_list: {
-            type: DataTypes.TEXT,
-            allowNull: true,
-            defaultValue: "",
-        }
+        // breed: {
+        //     type: DataTypes.STRING,
+        //     allowNull: true // testing with true
+        // },
+        // age: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: true, // testing with true
+        //     validate: {
+        //         isNumeric: true
+        //     }
+        // },
+        // gender: {
+        //     type: DataTypes.STRING,
+        //     allowNull: true // testing with true
+        // },
+        // // link: { //dog photo
+        // //     type: DataTypes.STRING,
+
+        // // },
+        // location: {
+        //     type: DataTypes.STRING,
+        //     allowNull: true // testing with true
+        // },
+        // matches_list: {
+        //     type: DataTypes.TEXT,
+        //     allowNull: true,
+        //     defaultValue: "",
+        // }
+        
         // match: {
         //     type: DataTypes.STRING,
         //     allowNull: false,

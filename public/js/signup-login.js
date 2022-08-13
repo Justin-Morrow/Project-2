@@ -17,7 +17,7 @@ console.log('LOGIN!!!!')
             body: JSON.stringify({ username: username, password: password }), //email
             headers: {'Content-Type': 'application/json'}
         });
-
+        console.log(await response.json())
         if(response.ok) {
             document.location.replace('/profile');
         } else {
@@ -43,8 +43,7 @@ const signupFormHandler = async (event) => {
           body: JSON.stringify({ username: username, password: password }),
           headers: { 'Content-Type': 'application/json' },
         });
-        console.log(response)
-    
+        console.log(await response.json())
         if (response.ok) {
           console.log(response, 'RESPONSE!!!!!')
           document.location.replace('/profile');
