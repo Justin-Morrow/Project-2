@@ -9,14 +9,6 @@ router.get("/", (req,res)=>{
 })
 
 //===============LOGIN PAGE================//
-// router.get("/signup-login", (req,res)=>{
-//     if(req.session.loggedIn) {
-//         res.redirect('/profile');
-//         return;
-//     }
-//     // sign-up and login
-//     res.render("signup-login")
-// })
 
 router.get('/signup-login', (req, res) => {
     if(req.session.loggedIn) {
@@ -76,24 +68,24 @@ router.get('/profile', async (req, res) => {
 
 //========================= LOBBY =============================//
 
-router.get('/lobby', async (req, res) => { //add with auth
-    try {
-        const userData = await User.findByPk(req.session.user_id, {
-            attributes: {exclude: ['password'] },
-            // include: [{ model: User }],
-        });
+// router.get('/lobby', async (req, res) => { //add with auth
+//     try {
+//         const userData = await User.findByPk(req.session.user_id, {
+//             attributes: {exclude: ['password'] },
+//             // include: [{ model: User }],
+//         });
         
-        const user = userData.get({ plain: true });  //DOES NOT WORK UNLESS COMMENTED OUT, SOLVE
+//         const user = userData.get({ plain: true });  //DOES NOT WORK UNLESS COMMENTED OUT, SOLVE
 
-        res.render('lobby', {
-            user, //...user, //DOES NOT WORK UNLESS COMMENTED OUT, SOLVE
-            loggedIn: true
-        });
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
-    }
-});
+//         res.render('lobby', {
+//             user, //...user, //DOES NOT WORK UNLESS COMMENTED OUT, SOLVE
+//             loggedIn: true
+//         });
+//     } catch (err) {
+//         console.log(err)
+//         res.status(500).json(err)
+//     }
+// });
 
 // // Lobby-user-2 get request 
 // router.get("/lobby-user-2", (req,res)=>{
