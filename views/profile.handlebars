@@ -7,7 +7,7 @@
   <div class="container">
     {{#each dogs as |dog|}}
     <div class="container-md border border-3 d-flex justify-content-between mb-2">
-      <h5><a href="/edit-dog/{{dog.id}}">{{dog.dog_name}}</a></h5>
+      <h5><a href="/single-dog/{{dog.id}}">{{dog.dog_name}}</a></h5>
       {{!-- <p>{{format_date post.date_created}}</p> --}}
     </div>
     {{/each}}
@@ -15,5 +15,6 @@
       <a class="link btn colored-section btn-md" href="/add-dog">+ Add Dog</a>
     </div>
   </div>
-        
+  
+  {{!-- <script src="/js/edit-dog.js"></script> --}}
         
