@@ -1,6 +1,5 @@
 const router = require('express').Router(); 
-// const { Model } = require('sequelize/types'); // ERROR subpath './types' is not defined by "exports" !!!!!!!!
-const { User } = require('../models');
+const { User, Dog } = require('../models');
 // const withAuth = require('../utils/auth');
 
 //============== Home Page get request ================
@@ -30,45 +29,26 @@ router.get('/signup-login', (req, res) => {
 //============== PROFILE get request ================
 
 
-// router.get('/profile', async (req, res) => { //add with auth
+// router.get('/profile', async (req, res) => {
+//     console.log(req.session)
 //     try {
 //         const userData = await User.findByPk(req.session.user_id, {
 //             attributes: {exclude: ['password'] },
-//             // include: [{ model: User }], //??????
+//             include: [{ model: Dog }],
 //         });
-        
-//         const user = userData.get({ plain: true });  // TypeError: Cannot read properties of null (reading 'get')  //DOES NOT WORK UNLESS COMMENTED OUT, SOLVE
+//         console.log(userData)
+//         console.log(req.session.user_id)
+//         const user = userData.get({ plain: true });
 
 //         res.render('profile', {
-//             ...user,  // user, //DOES NOT WORK UNLESS COMMENTED OUT, SOLVE
+//             ...user, // what does elipses do?
 //             loggedIn: true
 //         });
 //     } catch (err) {
 //         console.log(err)
-//         res.status(500).json(err)
+//         res.status(500).json(err);
 //     }
 // });
-
-router.get('/profile', async (req, res) => {
-    console.log(req.session)
-    try {
-        const userData = await User.findByPk(req.session.user_id, {
-            attributes: {exclude: ['password'] },
-            // include: [{ model: Post }],
-        });
-        console.log(userData)
-        console.log(req.session.user_id)
-        const user = userData.get({ plain: true });
-
-        res.render('profile', {
-            ...user, // what does elipses do?
-            loggedIn: true
-        });
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err);
-    }
-});
 
 //============== LOBBY ================
 
@@ -93,22 +73,136 @@ router.get('/lobby', async (req, res) => { //add with auth
         res.status(500).json(err)
     }
 });
+//==============GET DOG=================//
+
+router.get('/add-dog', (req, res) => {
+    res.render('add-dog', {
+        loggedIn: true
+    })
+});
 
 //=============== LOBBY =================//
 
-// Lobby-user-2 get request 
-router.get("/lobby-user-2", (req,res)=>{
-  // if not logged in alert you need to log in
-    if(!req.session.user){
-    alert("You need to login");
+// // Lobby-user-2 get request 
+// router.get("/lobby-user-2", (req,res)=>{
+//   // if not logged in alert you need to log in
+//     if(!req.session.user){
+//     alert("You need to login");
+//     }
+//     // if you are logged in, go to the profile
+//     User.findByPk(req.session.user.id).then(
+//         userData => {
+//             const hbsUser = userData.get({ plain: true });
+//             console.log(hbsUser);
+//             res.render("lobby-user-2", hbsUser)
+//             })
+// });
+
+ //=======================GET ALL DOGS ===================//
+
+//  router.get('/profile', async (req, res) => {
+//     console.log(req.session, "REQ SESSION=============")
+//     try{
+//         const dogData = await Dog.findAll({
+            
+//             include: [
+//                 {
+//                     model: User, //user because you want to know the username of whoever made the post
+//                     attributes: ['username'],
+//                 },
+//             ],
+//         });
+//         //serialize data so template can read it
+//         const dogs = dogData.map((dog) => {
+//             return dog.get({ plain: true })
+//         });
+        
+//         res.render('profile', { dogs, loggedIn: req.session.loggedIn });
+//     } catch (err) {
+//         console.log(err);
+//         res.status(500).json(err);
+//     }
+// });
+
+router.get('/profile', async (req, res) => {
+    console.log(req.session)
+    try{
+        const userData = await User.findByPk(req.session.user_id, {
+            attributes: {exclude: ['password'] },
+            include: [{ model: Dog }],
+        });
+        console.log(userData)
+        console.log(req.session.user_id)
+        const user = userData.get({ plain: true});
+        
+        res.render('profile', { 
+            ...user,
+            loggedIn: true
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
     }
-    // if you are logged in, go to the profile
-    User.findByPk(req.session.user.id).then(
-        userData => {
-            const hbsUser = userData.get({ plain: true });
-            console.log(hbsUser);
-            res.render("lobby-user-2", hbsUser)
-            })
 });
+ //=======================GET ONE DOG ===================//
+
+//  router.get('/edit/:id', async (req, res) => { // add with auth
+//     console.log(req, "REQ ==============!")
+//     try{
+//         const dogData = await Dog.findByPk(req.params.id, {
+//             // include: [
+//             //     {
+//             //         model: Comment,
+//             //         // attributes: ['comment_text'], //?
+//             //         include: {
+//             //             model: User,
+//             //             attributes: ["username"]
+//             //         }
+//             //     },
+//             //     {
+//             //         model: User,
+//             //         attributes: ["username"]
+//             //     },
+//             // ],
+//         });
+
+//         const dog = dogData.get({ plain: true });
+//         //checks to make sure user is logged in?
+//         res.render('single-dog', { //single-dog??????
+//             ...dog,
+//             loggedIn: req.session.loggedIn 
+//         })
+
+//     } catch (err) {
+//         console.log(err);
+//         res.status(500).json(err);
+//     }
+// });
+
+router.get('/edit/:id', async (req, res) => { // add with auth
+    console.log(req, "REQ ==============!")
+    try{
+        const dogData = await Dog.findOne({
+            where: {
+                id: req.params.id,
+            }
+        });
+        if(!dogData) {
+            res.status(404).json({ message: 'you cannot edit this post'});
+            return;
+        };
+
+        const dog = dogData.get({ plain: true });
+        res.render('edit-dog', { //single-dog??????
+            ...dog,
+            loggedIn: true
+        });
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
 
 module.exports = router;

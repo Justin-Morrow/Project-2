@@ -3,90 +3,80 @@ const router = require('express').Router();
 const { Dog } = require('../../models'); //add USER?
 // const withAuth = require('../../utils/auth')
 
+//===========ADD DOG =================//
 
-
-router.post('/', async (req, res) => { //profile? //aADD withAuth
-    // find all categories
-    try{
-      const newDog = await Dog.create({
-        ...req.body,
-        // user_id: req.session.user_id, 
-      });
-  
-      res.status(200).json(newDog)
-    } catch (err) {
-      res.status(400).json(err)
-    }
-    // be sure to include its associated Products
-  });
-
-router.get('/', async (req, res) => { //ADD withAuth
-  try{
-    const dogData = await Dog.findAll({
-      // include: User 
+router.post('/', async (req,res) => {
+  try {
+    console.log(req, "DOG REQ++++++++++")
+    const newDog = await Dog.create({
+      ...req.body, // what does elipses do 
+      user_id: req.session.user_id, //user_id? or user.id
     });
+    console.log(newDog, "NEW DOG $$$$$$$$$$$")
 
-    res.status(200).json(dogData)
-  } catch (err) {
-    res.status(500).json(err)
-  }
-});
-
-router.get('/:id', async (req, res) => { //add with auth
-  try{
-    const dogData = await Dog.findByPk(req.params.id, {
-      // include: User 
-    });
-    if(!dogData) {
-      res.status(404).json({message: "No Dog found with that id!"});
-      return;
-    }
-    res.status(200).json(dogData)
-
+      res.status(200).json(newDog);
   } catch (err) {
     console.log(err)
-    res.status(500).json(err)
+      res.status(400).json(err);
   }
-  
 });
 
-// router.put('/:id', withAuth, async (req, res) => { 
-//   // update a category by its `id` value
-//   try{
-//     const dogData = await Dog.update(req.body, {
-//       where: {
-//         category_id: req.params.id
-//       },
-//     })
-//     if(!dogData) {
-//       res.status(404).json({ message: "No category found with this id!"});
-//       // return; //IS RETURN NEEDED?
+// router.post('/', async (req, res) => { //profile? //aADD withAuth
+//     // find all categories
+//     try{
+//       const newDog = await Dog.create({
+//         ...req.body,
+//         // user_id: req.session.user_id, 
+//       });
+  
+//       res.status(200).json(newDog)
+//     } catch (err) {
+//       res.status(400).json(err)
 //     }
-//     res.status(200).json(dogData);
+//     // be sure to include its associated Products
+//   });
 
-//   } catch (err) {
-//     console.log(err)
-//     res.status(500).json(err);
-//   }
-// });
+//=======================UPDATE DOG=========================//
 
-router.delete('/:id', async (req, res) => { // add with auth
+router.put('/:id', async (req, res) => {
   try{
-    const dogData = await Dog.destroy({
-      where: {
-        id: req.params.id,
-        // user_id: req.session.user_id, //?????
+      const updateDog = await Dog.update({
+          ...req.body //??
       },
-    });
-    if(!dogData) {
-      res.status(404).json({message: 'No category found with that id!'});
-      return;
-    }
-    res.status(200).json(dogData);
+      {
+          where: { //??
+              id: req.params.id //??
+          }
+      });
 
-  }catch (err) {
+      if(!updateDog) {
+          res.status(404).json({ message: 'no post with this ID'})
+      }
+      res.status(200).json(updateDog)
+  } catch (err) {
     console.log(err)
-    res.status(500).json(err)
+      res.status(500).json(err)
+  }
+});
+
+//======================Delete Dog============================//
+
+router.delete('/:id', async (req,res) => {
+  try{
+      const deleteDog = await Dog.destroy({
+          where: {
+              id: req.params.id,
+              user_id: req.session.user_id
+          }
+      });
+
+      if(!deleteDog) {
+          res.status(404).json({ message: 'no post with that ID.'})
+      }
+      res.status(200).json(deleteDog)
+  } catch (err) {
+    console.log(err)
+      res.status(500).json(err) //why 500 and not 400 like above
   }
 });
 

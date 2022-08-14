@@ -52,14 +52,14 @@ Dog.init(
         //         this.setDataValue('user_id', val.join(';'));
         //     },
         // },
-        // user_id: { // ALLOW NULL?????????????????????
-        //     type: DataTypes.INTEGER,
-        //     // allowNull: false,
-        //     references: {
-        //         model: 'user',
-        //         key: 'id'
-        //     }
-        // }
+        user_id: { // ALLOW NULL?????????????????????
+            type: DataTypes.INTEGER,
+            // allowNull: false,
+            references: {
+                model: 'user',
+                key: 'id',
+            },
+        },
     },
     {
         //link to database
